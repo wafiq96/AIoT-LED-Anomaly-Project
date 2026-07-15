@@ -1,7 +1,0 @@
-../Middlewares/Third_Party/mbedTLS/library/nist_kw.c:260:12:unwrap.constprop	96	static
-../Middlewares/Third_Party/mbedTLS/library/nist_kw.c:46:6:mbedtls_nist_kw_init	0	static
-../Middlewares/Third_Party/mbedTLS/library/nist_kw.c:51:5:mbedtls_nist_kw_setkey	32	static
-../Middlewares/Third_Party/mbedTLS/library/nist_kw.c:103:6:mbedtls_nist_kw_free	8	static
-../Middlewares/Third_Party/mbedTLS/library/nist_kw.c:129:5:mbedtls_nist_kw_wrap	96	static
-../Middlewares/Third_Party/mbedTLS/library/nist_kw.c:323:5:mbedtls_nist_kw_unwrap	96	static
-../Middlewares/Third_Party/mbedTLS/library/nist_kw.c:584:5:mbedtls_nist_kw_self_test	200	static

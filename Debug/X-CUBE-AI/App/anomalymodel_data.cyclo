@@ -1,4 +1,0 @@
-../X-CUBE-AI/App/anomalymodel_data.c:42:11:ai_anomalymodel_data_activations_buffer_get	1
-../X-CUBE-AI/App/anomalymodel_data.c:60:11:ai_anomalymodel_data_weights_buffer_get	1
-../X-CUBE-AI/App/anomalymodel_data.c:78:11:ai_anomalymodel_data_weights_get	1
-../X-CUBE-AI/App/anomalymodel_data.c:91:9:ai_anomalymodel_data_params_get	2

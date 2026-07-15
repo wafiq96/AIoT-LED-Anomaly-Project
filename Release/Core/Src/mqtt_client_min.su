@@ -1,5 +1,0 @@
-../Core/Src/mqtt_client_min.c:8:17:put_str	16	static
-../Core/Src/mqtt_client_min.c:30:5:mqtt_connect	536	static
-../Core/Src/mqtt_client_min.c:84:5:mqtt_publish_qos0	1016	static
-../Core/Src/mqtt_client_min.c:108:5:mqtt_ping	16	static
-../Core/Src/mqtt_client_min.c:115:6:mqtt_disconnect	16	static
