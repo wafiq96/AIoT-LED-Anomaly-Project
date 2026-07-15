@@ -1,0 +1,9 @@
+../Core/Inc/bh1750.h:13:20:BH1750_Init	1
+../Core/Inc/light_anomaly.h:46:5:LedAnomaly_AiInit	2
+../Core/Inc/light_anomaly.h:84:5:LedAnomaly_Init	1
+../Core/Inc/light_anomaly.h:90:6:LedAnomaly_Update	4
+../Core/Src/main.c:304:6:SystemClock_Config	4
+../Core/Src/main.c:364:6:PeriphCommonClock_Config	2
+../Core/Src/main.c:122:5:main	50
+../Core/Src/main.c:1087:5:_write	1
+../Core/Src/main.c:1099:6:Error_Handler	1

@@ -1,0 +1,6 @@
+../Core/Src/tls_transport.c:20:12:es_wifi_recv_timeout	32	static
+../Core/Src/tls_transport.c:8:12:es_wifi_send	32	static
+../Core/Src/tls_transport.c:141:5:tls_transport_send	24	static
+../Core/Src/tls_transport.c:156:5:tls_transport_recv	8	static
+../Core/Src/tls_transport.c:165:6:tls_transport_close	16	static
+../Core/Src/tls_transport.c:43:5:tls_transport_connect	320	static

@@ -1,0 +1,11 @@
+../X-CUBE-AI/App/anomalymodel.c:342:9:ai_anomalymodel_get_info	152	static
+../X-CUBE-AI/App/anomalymodel.c:389:9:ai_anomalymodel_get_report	152	static
+../X-CUBE-AI/App/anomalymodel.c:436:10:ai_anomalymodel_get_error	0	static
+../X-CUBE-AI/App/anomalymodel.c:443:10:ai_anomalymodel_create	16	static
+../X-CUBE-AI/App/anomalymodel.c:489:12:ai_anomalymodel_inputs_get	0	static
+../X-CUBE-AI/App/anomalymodel.c:500:12:ai_anomalymodel_outputs_get	0	static
+../X-CUBE-AI/App/anomalymodel.c:511:11:ai_anomalymodel_destroy	0	static
+../X-CUBE-AI/App/anomalymodel.c:518:9:ai_anomalymodel_init	24	static
+../X-CUBE-AI/App/anomalymodel.c:454:10:ai_anomalymodel_create_and_init	88	static
+../X-CUBE-AI/App/anomalymodel.c:535:8:ai_anomalymodel_run	0	static
+../X-CUBE-AI/App/anomalymodel.c:543:8:ai_anomalymodel_forward	0	static

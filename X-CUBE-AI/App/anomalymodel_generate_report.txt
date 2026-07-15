@@ -1,0 +1,171 @@
+ST Edge AI Core v2.2.0-20266 2adc00962
+Created date          : 2026-07-07 15:45:38
+Parameters            : generate --target stm32l4 --name anomalymodel -m C:/Users/chira/OneDrive/Desktop/EdgeAI/LightAnomaly2.tflite --compression none --verbosity 1 --workspace C:/Users/chira/AppData/Local/Temp/mxAI_workspace206307202568001080651198925786493 --output C:/Users/chira/.stm32cubemx/anomalymodel_output
+
+Exec/report summary (generate)
+-----------------------------------------------------------------------------------------------------------
+model file         :   C:\Users\chira\OneDrive\Desktop\EdgeAI\LightAnomaly2.tflite                         
+type               :   tflite                                                                              
+c_name             :   anomalymodel                                                                        
+compression        :   none                                                                                
+options            :   allocate-inputs, allocate-outputs                                                   
+optimization       :   balanced                                                                            
+target/series      :   stm32l4                                                                             
+workspace dir      :   C:\Users\chira\AppData\Local\Temp\mxAI_workspace206307202568001080651198925786493   
+output dir         :   C:\Users\chira\.stm32cubemx\anomalymodel_output                                     
+model_fmt          :   float                                                                               
+model_name         :   LightAnomaly2                                                                       
+model_hash         :   0xaf4c4f6e70c1694f3fc6e35a6d06a7c9                                                  
+params #           :   2,128 items (2.31 KiB)                                                              
+-----------------------------------------------------------------------------------------------------------
+input 1/1          :   'serving_default_ke..tensor_600', f32(1x64), 256 Bytes, activations                 
+output 1/1         :   'nl_2', f32(1x64), 256 Bytes, activations                                           
+macc               :   2,784                                                                               
+weights (ro)       :   8,512 B (8.31 KiB) (1 segment)                                                      
+activations (rw)   :   320 B (320 B) (1 segment) *                                                         
+ram (total)        :   320 B (320 B) = 320 + 0 + 0                                                         
+-----------------------------------------------------------------------------------------------------------
+(*) 'input'/'output' buffers are allocated in the activations buffer
+
+Model name - LightAnomaly2
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+m_id   layer (type,original)                            oshape        param/size       macc                     connected to   | c_size            c_macc            c_type                       
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+0      serving_default_ke..tensor_600 (Input, )         [b:1,c:64]                                                             | +4,160(+100.0%)   +1,056(+100.0%)   Dense_/Nonlinearity_[0, 1]   
+       sequential_15_1_en..r_1_MatMul (Placeholder, )   [b:16,c:64]   1,024/1,024                                              | -1,024(-100.0%)                     
+       arith_constant (Placeholder, )                   [b:16]        16/64                                                    | -64(-100.0%)                        
+       gemm_0 (Gemm, FULLY_CONNECTED)                   [b:1,c:16]                    1,040   serving_default_ke..tensor_600   |                   -1,040(-100.0%)   
+                                                                                              sequential_15_1_en..r_1_MatMul   | 
+                                                                                                              arith_constant   | 
+       nl_0_nl (Nonlinearity, FULLY_CONNECTED)          [b:1,c:16]                       16                           gemm_0   |                   -16(-100.0%)      
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+1      tfl_pseudo_qconst (Placeholder, )                [b:64,c:16]   1,024/1,024                                              | +3,328(+325.0%)   +1,088(+100.0%)   Dense_[2]                    
+       arith_constant1 (Placeholder, )                  [b:64]        64/256                                                   | -256(-100.0%)                       
+       gemm_1 (Gemm, FULLY_CONNECTED)                   [b:1,c:64]                    1,088                          nl_0_nl   |                   -1,088(-100.0%)   
+                                                                                                           tfl_pseudo_qconst   | 
+                                                                                                             arith_constant1   | 
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+2      nl_2 (Nonlinearity, LOGISTIC)                    [b:1,c:64]                      640                           gemm_1   |                                     Nonlinearity_[o][3]          
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+model/c-model: macc=2,784/2,784  weights=2,368/8,512 +6,144(+259.5%) activations=--/320 io=--/0
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name            : LightAnomaly2
+c-name                : anomalymodel
+c-node #              : 4
+c-array #             : 9
+activations size      : 320 (1 segment)
+weights size          : 8512 (1 segment)
+macc                  : 2784
+inputs                : ['serving_default_keras_tensor_600_output']
+outputs               : ['nl_2_output']
+
+C-Arrays (9)
+------ ----------------------------------------- ----------- ------------------------- ------------- --------- 
+c_id   name (*_array)                            item/size   domain/mem-pool           c-type        comment   
+------ ----------------------------------------- ----------- ------------------------- ------------- --------- 
+0      gemm_0_bias                               16/64       weights/weights           const float             
+1      gemm_0_output                             16/64       activations/**default**   float                   
+2      gemm_0_weights                            1024/4096   weights/weights           const float             
+3      gemm_1_bias                               64/256      weights/weights           const float             
+4      gemm_1_output                             64/256      activations/**default**   float                   
+5      gemm_1_weights                            1024/4096   weights/weights           const float             
+6      nl_0_nl_output                            16/64       activations/**default**   float                   
+7      nl_2_output                               64/256      activations/**default**   float         /output   
+8      serving_default_keras_tensor_600_output   64/256      activations/**default**   float         /input    
+------ ----------------------------------------- ----------- ------------------------- ------------- --------- 
+
+C-Layers (4)
+------ ---------------- ---- --------------- ------ ------ -------------------------------------------- ------------------ 
+c_id   name (*_layer)   id   layer_type      macc   rom    tensors                                      shape (array id)   
+------ ---------------- ---- --------------- ------ ------ -------------------------------------------- ------------------ 
+0      gemm_0           0    Dense           1040   4160   I: serving_default_keras_tensor_600_output   f32(1x64) (8)      
+                                                           W: gemm_0_weights                            f32(16x64) (2)     
+                                                           W: gemm_0_bias                               f32(16) (0)        
+                                                           O: gemm_0_output                             f32(1x16) (1)      
+------ ---------------- ---- --------------- ------ ------ -------------------------------------------- ------------------ 
+1      nl_0_nl          0    Nonlinearity    16     0      I: gemm_0_output                             f32(1x16) (1)      
+                                                           O: nl_0_nl_output                            f32(1x16) (6)      
+------ ---------------- ---- --------------- ------ ------ -------------------------------------------- ------------------ 
+2      gemm_1           1    Dense           1088   4352   I: nl_0_nl_output                            f32(1x16) (6)      
+                                                           W: gemm_1_weights                            f32(64x16) (5)     
+                                                           W: gemm_1_bias                               f32(64) (3)        
+                                                           O: gemm_1_output                             f32(1x64) (4)      
+------ ---------------- ---- --------------- ------ ------ -------------------------------------------- ------------------ 
+3      nl_2             2    Nonlinearity    640    0      I: gemm_1_output                             f32(1x64) (4)      
+                                                           O: nl_2_output                               f32(1x64) (7)      
+------ ---------------- ---- --------------- ------ ------ -------------------------------------------- ------------------ 
+
+
+
+Number of operations per c-layer
+------- ------ ------------------------ ------- -------------- 
+c_id    m_id   name (type)                  #op           type 
+------- ------ ------------------------ ------- -------------- 
+0       0      gemm_0 (Dense)             1,040   smul_f32_f32 
+1       0      nl_0_nl (Nonlinearity)        16     op_f32_f32 
+2       1      gemm_1 (Dense)             1,088   smul_f32_f32 
+3       2      nl_2 (Nonlinearity)          640     op_f32_f32 
+------- ------ ------------------------ ------- -------------- 
+total                                     2,784 
+
+Number of operation types
+---------------- ------- ----------- 
+operation type         #           % 
+---------------- ------- ----------- 
+smul_f32_f32       2,128       76.4% 
+op_f32_f32           656       23.6% 
+
+Complexity report (model)
+------ ---------------------------------- ------------------------- ------------------------- -------- 
+m_id   name                               c_macc                    c_rom                     c_id     
+------ ---------------------------------- ------------------------- ------------------------- -------- 
+0      serving_default_keras_tensor_600   |||||||||||||||   37.9%   |||||||||||||||   48.9%   [0, 1]   
+1      tfl_pseudo_qconst                  ||||||||||||||||  39.1%   ||||||||||||||||  51.1%   [2]      
+2      nl_2                               |||||||||         23.0%   |                  0.0%   [3]      
+------ ---------------------------------- ------------------------- ------------------------- -------- 
+macc=2,784 weights=8,512 act=320 ram_io=0
+ 
+ Requested memory size by section - "stm32l4" target
+ ------------------------------ ------- -------- ------- ----- 
+ module                            text   rodata    data   bss 
+ ------------------------------ ------- -------- ------- ----- 
+ NetworkRuntime1020_CM4_GCC.a     6,600        0       0     0 
+ anomalymodel.o                     468       32   1,264   136 
+ anomalymodel_data.o                 48       16      88     0 
+ lib (toolchain)*                   712       24       0     0 
+ ------------------------------ ------- -------- ------- ----- 
+ RT total**                       7,828       72   1,352   136 
+ ------------------------------ ------- -------- ------- ----- 
+ weights                              0    8,512       0     0 
+ activations                          0        0       0   320 
+ io                                   0        0       0     0 
+ ------------------------------ ------- -------- ------- ----- 
+ TOTAL                            7,828    8,584   1,352   456 
+ ------------------------------ ------- -------- ------- ----- 
+ *  toolchain objects (libm/libgcc*)
+ ** RT AI runtime objects (kernels+infrastructure)
+  
+  Summary - "stm32l4" target
+  ---------------------------------------------------
+               FLASH (ro)      %*   RAM (rw)       % 
+  ---------------------------------------------------
+  RT total          9,252   52.1%      1,488   82.3% 
+  ---------------------------------------------------
+  TOTAL            17,764              1,808         
+  ---------------------------------------------------
+  *  rt/total
+
+
+Generated files (7)
+---------------------------------------------------------------------------- 
+C:\Users\chira\.stm32cubemx\anomalymodel_output\anomalymodel_data_params.h   
+C:\Users\chira\.stm32cubemx\anomalymodel_output\anomalymodel_data_params.c   
+C:\Users\chira\.stm32cubemx\anomalymodel_output\anomalymodel_data.h          
+C:\Users\chira\.stm32cubemx\anomalymodel_output\anomalymodel_data.c          
+C:\Users\chira\.stm32cubemx\anomalymodel_output\anomalymodel_config.h        
+C:\Users\chira\.stm32cubemx\anomalymodel_output\anomalymodel.h               
+C:\Users\chira\.stm32cubemx\anomalymodel_output\anomalymodel.c               

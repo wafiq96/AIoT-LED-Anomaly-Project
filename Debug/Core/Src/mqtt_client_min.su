@@ -1,0 +1,10 @@
+../Core/Src/mqtt_client_min.c:7:17:put_u16	16	static
+../Core/Src/mqtt_client_min.c:9:17:put_str	24	static
+../Core/Src/mqtt_client_min.c:18:17:encode_remaining_len	24	static
+../Core/Src/mqtt_client_min.c:31:5:mqtt_connect	568	static
+../Core/Src/mqtt_client_min.c:85:5:mqtt_publish_qos0	1040	static
+../Core/Src/mqtt_client_min.c:109:5:mqtt_ping	24	static
+../Core/Src/mqtt_client_min.c:116:6:mqtt_disconnect	24	static
+../Core/Src/mqtt_client_min.c:122:12:recv_exact	40	static
+../Core/Src/mqtt_client_min.c:133:5:mqtt_subscribe	536	static
+../Core/Src/mqtt_client_min.c:159:5:mqtt_poll	768	static
