@@ -3,7 +3,7 @@ An end-to-end AIoT system for predictive maintenance of LED lighting using on-de
 Detected anomalies and telemetry are published over MQTT to HiveMQ Cloud, with Node-RED used for real-time visualization, alerting, and dashboard integration — enabling continuous, low-latency monitoring of lighting infrastructure health.
 Key Features
 
-Edge Inference: Autoencoder deployed on STM32 (TinyML) for real-time, on-device anomaly scoring
+Edge Inference: Autoencoder using google collab (keras and tensorflow lite) and deployed on STM32 (TinyML) using XcubeAI for real-time, on-device anomaly scoring
 Predictive Maintenance: Detects early degradation patterns before hard failure
 Cloud Connectivity: Secure telemetry publishing via HiveMQ Cloud (MQTT)
 Visualization & Alerts: Node-RED dashboard for live monitoring and notifications
